@@ -6,3 +6,4 @@ mysqlclient
 sqlalchemy_serializer
 flask-marshmallow
 marshmallow-sqlalchemy
+flask_restx

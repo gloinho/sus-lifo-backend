@@ -48,19 +48,21 @@ source venv/bin/activate
 pip install -r requirements.txt`
 ```
 
-4. Suba o container
+4. Crie um .env no root do repositório, como está no .env.example
+
+5. Suba o container
 
 ```bash
 docker-compose up -d
 ```
 
-5. Rode os seguintes comandos
+6. Rode os seguintes comandos
 
 ```bash
 flask db migrate
-flask db update
+flask db upgrade
 flask run
 ```
 
-6. Acesse o swagger
+7. Acesse o swagger
    `http://localhost:5000`
