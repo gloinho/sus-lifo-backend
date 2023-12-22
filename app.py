@@ -1,6 +1,10 @@
-from src import config, app
+from flask_migrate import Migrate
+from src import create_app, db
+from dotenv import load_dotenv
 
-if __name__ == "__main__":
-    app.run(host= config.HOST,
-            port= config.PORT,
-            debug= config.DEBUG)
+load_dotenv()
+
+
+app = create_app("dev")
+migrate = Migrate(app, db)
+

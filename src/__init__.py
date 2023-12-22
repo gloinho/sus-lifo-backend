@@ -1,24 +1,21 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
-from src.config.config import Config
-from dotenv import load_dotenv
-import os
+from .config import config_by_name
+from .extensions import db, ma
 
-load_dotenv()
+def create_app(config_name):
 
-app = Flask(__name__)
+    app = Flask(__name__)
 
-config = Config().dev_config
+    app.config.from_object(config_by_name[config_name])
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("SQLALCHEMY_DATABASE_URI_DEV")
+    register_extensions(app)
 
-db = SQLAlchemy(app)
+    from .api import api_bp
+    app.register_blueprint(api_bp)
 
-migrate = Migrate(app, db)
+    return app
 
-from src.api.routes.routes import api
 
-app.register_blueprint(api, url_prefix="/api")
-
-from src.domain.models.patient import Patient
+def register_extensions(app):
+    db.init_app(app)
+    ma.init_app(app)

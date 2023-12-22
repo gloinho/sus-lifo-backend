@@ -4,3 +4,5 @@ Flask-Migrate
 python-dotenv
 mysqlclient
 sqlalchemy_serializer
+flask-marshmallow
+marshmallow-sqlalchemy
