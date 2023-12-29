@@ -6,9 +6,13 @@ from werkzeug.exceptions import BadRequest,NotFound
 
 class PatientService:
     @staticmethod
-    def getPatients():
+    def getPatients(assisted):
         patient_schema = PatientSchema()
-        patients = Patient.query.order_by(desc(Patient.createdAt)).all()
+        if(assisted is not None):
+            patients = Patient.query.where(Patient.assisted == assisted).order_by(desc(Patient.createdAt)).all()
+        else:
+            patients = Patient.query.order_by(desc(Patient.createdAt)).all()
+
         data = [patient_schema.dump(patient) for patient in patients]
 
         return data

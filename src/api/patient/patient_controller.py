@@ -9,8 +9,12 @@ api = PatientDto.api
 class PatientController(Resource):
     @api.doc('Gets the stack of patients.', model=PatientDto.patientResponse)
     @api.response(200, 'Success')
+    @api.expect(api.parser().add_argument('assisted', type=bool, help='Filter patients by assisted status'))
     def get(self):
-        return PatientService.getPatients()
+        assisted_param = request.args.get('assisted')
+        assisted = assisted_param.lower() == 'true' if assisted_param else None
+        return PatientService.getPatients(assisted=assisted)
+    
     
     @api.doc('Create a new Patient and put him in the top of the stack.', model=PatientDto.patientResponse)
     @api.expect(PatientDto.patientRequest)
