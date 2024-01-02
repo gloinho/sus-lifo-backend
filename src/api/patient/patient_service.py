@@ -38,7 +38,7 @@ class PatientService:
         patient:Patient = Patient.query.where(Patient.assisted == False).order_by(desc(Patient.createdAt)).first()
 
         if patient is None:
-            raise BadRequest('All patients were assisted. The line is empty!!! Fala do SUS')
+            raise BadRequest('Todos os pacientes foram atendidos, a fila está vazia.')
         
         patient.assisted = True
         db.session.commit()
