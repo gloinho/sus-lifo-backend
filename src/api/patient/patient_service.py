@@ -1,3 +1,4 @@
+import re
 from sqlalchemy import desc, update
 from src import db
 from src.domain.models.patient import Patient
@@ -19,6 +20,13 @@ class PatientService:
     
     @staticmethod
     def addPatients(request:str):
+        if not request: 
+            raise BadRequest("Nome do paciente não pode ser vazio ou nulo")
+        
+        if re.match(r"^[a-zA-Z]+$", request ) is None:
+            raise BadRequest("Nomes podem conter apenas letras.")
+        
+
         patient = Patient(name=request)
         patient_schema = PatientSchema()
         db.session.add(patient)

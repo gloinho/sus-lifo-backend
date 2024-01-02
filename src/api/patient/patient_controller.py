@@ -21,7 +21,7 @@ class PatientController(Resource):
     @api.response(200, 'Success')
     def post(self):
         data = request.json
-        return PatientService.addPatients(data["name"])
+        return PatientService.addPatients(data["name"]), 200
     
     @api.doc('Assist a patient -> remove from the top of the stack.')
     @api.response(200, 'Success')
