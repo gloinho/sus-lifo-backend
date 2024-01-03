@@ -15,9 +15,8 @@ Você deverá implementar um mini-sistema web com as seguintes caracteristicas:
 
 ## Pre-requisitos
 
-- python
-- docker
-- docker-compose
+- [Python](https://www.python.org/downloads/)
+- [Docker](https://www.docker.com/products/docker-desktop/)
 
 ## Como usar
 
@@ -48,7 +47,7 @@ source venv/bin/activate
 pip install -r requirements.txt`
 ```
 
-4. Crie um .env no root do repositório, como está no .env.example
+4. Renomeie `.env.example` para `.env`
 
 5. Suba o container
 
