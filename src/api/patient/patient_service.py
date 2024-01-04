@@ -23,7 +23,7 @@ class PatientService:
         if not request: 
             raise BadRequest("Nome do paciente não pode ser vazio ou nulo")
         
-        if re.match(r"^[a-zA-Z]+$", request ) is None:
+        if re.match(r"^[a-zA-ZÀ-ÖØ-öø-ÿ]+$", request ) is None:
             raise BadRequest("Nomes podem conter apenas letras.")
         
 
