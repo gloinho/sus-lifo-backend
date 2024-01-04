@@ -10,7 +10,7 @@ class Patient(db.Model, SerializerMixin):
     updatedAt = db.Column(db.DateTime(timezone=True), onupdate=func.now())
     assisted = db.Column(db.Boolean(), default=False)
 
-    def __init__(self, name, createdAt = datetime.utcnow(), assisted=False):
+    def __init__(self, name,createdAt= None, assisted=False):
         self.name = name
         self.assisted = assisted
-        self.createdAt = createdAt
+        self.createdAt = createdAt or datetime.now()
