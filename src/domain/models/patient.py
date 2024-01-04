@@ -9,6 +9,7 @@ class Patient(db.Model, SerializerMixin):
     updatedAt = db.Column(db.DateTime(timezone=True), onupdate=func.now())
     assisted = db.Column(db.Boolean(), default=False)
 
-    def __init__(self, name, assisted=False):
+    def __init__(self, name, createdAt, assisted=False):
         self.name = name
         self.assisted = assisted
+        self.createdAt = createdAt

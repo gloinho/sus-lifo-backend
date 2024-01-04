@@ -8,3 +8,6 @@ load_dotenv()
 app = create_app("dev")
 migrate = Migrate(app, db)
 
+with app.app_context():
+    from src.seed import seed_data  # Importa a função seed_data do seu script seed.py
+    seed_data()
